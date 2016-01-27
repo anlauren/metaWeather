@@ -4,13 +4,35 @@
     	<script src="js/angular.js"></script>
     	<script type="text/javascript" src="js/metaWeatherApp.js"></script>
     	<link rel="stylesheet" href="css/bootstrap.css">
+    	<link rel="stylesheet" href="css/metaw.css">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
 	</head>
 	<body>
-		<div class="container-fluid pqge">
-		<div class="page-header md-12">
-		<h1>MetaWeather <small></br>the weather you need</small></h1>
-		</div>	
+		<div class="container-fluid page">
+			<div class="row col-md-12 page-header">
+				<h1>MetaWeather <small></br>the weather you need</small></h1>
+			</div>
+			<div class="row">			
+				<div class="col-md-2">
+					<div class="row">
+						<h3><small>Search options</small></h3>
+						<ul class="nav nav-pills nav-stacked">
+							<li role="presentation"><a href="#">Search by</a></li>
+							<li role="presentation"><a href="#">Up to</a></li>
+							<li role="presentation"><a href="#">Language</a></li>
+							<li role="presentation"><a href="#">Metric</a></li>
+						</ul>
+					</div>
+					<div class="row">
+						<h3><small>Search</small></h3>
+						<input type="text"/>
+						<input type="submit" href="#" value="Forecast!"/>
+					</div>
+				</div>
+				<div class="col-md-10">
+					<h3><small>Results</small></h3>
+				</div>
+			</div>
 		</div>
 	</body>
 </html>
