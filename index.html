@@ -49,15 +49,17 @@
 						<div class="row">
 							<h3><small>Search</small></h3>
 							<input type="text" ng-model="req"/>
-							<input type="submit" href="#" value="Forecast !"/>
+							<input ng-click="testUrl()" type="submit" href="#" value="Forecast !"/>
 						</div>
 					</div>
 					<div class="col-md-10">
-						<h3><small><input type="submit" href="#" value="Results"/> for <strong>{{req}}</strong> 
+						<h3><small><input ng-click="testUrl()" type="submit" href="#" value="Search"/> for <strong>{{req}}</strong> 
 							(<strong>{{locateType}}</strong>) 
 							up to: <strong>{{days}}</strong> 
 							days with <strong>{{metric}}</strong> system. 
 							(Language setting : <strong>{{lang}}</strong> )</small></h3>
+							<div ng-bind-html="contentResponse"></div>
+							{{}}
 					</div>
 				</div>
 			</div>

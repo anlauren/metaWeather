@@ -4,3 +4,6 @@
 .page-header{
 	padding-left: 15px;
 }
+thead{
+	font-weight: bold;
+}
