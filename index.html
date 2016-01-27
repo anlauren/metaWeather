@@ -2,6 +2,8 @@
 <html ng-app="mtw">
 	<head>
     	<script src="js/angular.js"></script>
+    	<script type="text/javascript" src="js/jquery.js"></script>
+    	<script type="text/javascript" src="js/bootstrap.js"></script>
     	<script type="text/javascript" src="js/metaWeatherApp.js"></script>
     	<link rel="stylesheet" href="css/bootstrap.css">
     	<link rel="stylesheet" href="css/metaw.css">
@@ -17,10 +19,27 @@
 					<div class="row">
 						<h3><small>Search options</small></h3>
 						<ul class="nav nav-pills nav-stacked">
-							<li role="presentation"><a href="#">Search by</a></li>
-							<li role="presentation"><a href="#">Up to</a></li>
-							<li role="presentation"><a href="#">Language</a></li>
-							<li role="presentation"><a href="#">Metric</a></li>
+							<li role="presentation"  class="dropdown">
+								 <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+      								Type <span class="caret"></span>
+								</a>
+								<ul class="dropdown-menu">
+								    <li><a href="#"> state and country </a></li>
+								    <li><a href="#">  City name </a></li>
+								    <li><a href="#"> Gps </a></li>
+								</ul>
+							</li>
+							<li role="presentation"  class="dropdown">
+								 <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+      								Up to : <span class="caret"></span>
+								</a>
+								<ul class="dropdown-menu">
+								    <li><a href="#">1 day</a></li>
+								    <li><a href="#">2 days</a></li>
+								</ul>
+							</li>
+							<li role="presentation"  class="dropdown"><a href="#">Language</a></li>
+							<li role="presentation"  class="dropdown"><a href="#">Metric</a></li>
 						</ul>
 					</div>
 					<div class="row">
@@ -30,7 +49,7 @@
 					</div>
 				</div>
 				<div class="col-md-10">
-					<h3><small>Results</small></h3>
+					<h3><small>Results for : {{location}} type :{{type}} in: {{lang}} up to: {{days}} days</small></h3>
 				</div>
 			</div>
 		</div>
