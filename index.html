@@ -14,53 +14,51 @@
 			<div class="row col-md-12 page-header">
 				<h1>MetaWeather <small></br>the weather you need</small></h1>
 			</div>
-			<div class="row">			
-				<div class="col-md-2">
-					<div class="row">
-						<h3><small>Search options</small></h3>
-						<ul class="nav nav-pills nav-stacked">
-							<li role="presentation" ><a href="#">
-								Type:
-								<select class="form-control">
-									<option value="one"></option>
-									<option value="two">2</option>
-									</select>
-								</a>
-							</li>
-							<li role="presentation" ><a href="#">
-								Up to (days):
-								<select class="form-control">
-									<option value="one">1</option>
-									<option value="two">2</option>
-									</select>
-								</a>
-							</li>
-							<li role="presentation" ><a href="#">
-								Language:
-								<select class="form-control">
-									<option value="one">1</option>
-									<option value="two">2</option>
-									</select>
-								</a>
-							</li>
-							<li role="presentation" ><a href="#">
-								Metric:
-								<select class="form-control">
-									<option value="one">1</option>
-									<option value="two">2</option>
-									</select>
-								</a>
-							</li>
-						</ul>
+			<div class="row">	
+				<div ng-controller="DataController">
+					<div class="col-md-2">
+						<div class="row">
+							<h3><small>Search options</small></h3>
+							
+								<ul class="nav nav-pills nav-stacked">
+									<li role="presentation" >
+										Type:
+										<select class="form-control" ng-model="locateType">
+										<option ng-repeat ="n in listLocateType" value="{{n}}">{{n}}</option>
+										</select>
+									</li>
+									<li role="presentation" >
+										Up to (days):
+										<select class="form-control" ng-model="days" ng-options="n for n in listDays">
+										</select>
+									</li>
+									<li role="presentation" >
+										Language:
+										<select class="form-control" ng-model="lang" ng-options="n for n in listLang">
+										</select>
+									</li>
+									<li role="presentation" >
+										Metric:
+										<select class="form-control" ng-model="metric">
+										<option ng-repeat ="n in listMetric" value="{{n}}">{{n}}</option>
+										</select>
+									</li>
+								</ul>
+							
+						</div>
+						<div class="row">
+							<h3><small>Search</small></h3>
+							<input type="text" ng-model="req"/>
+							<input type="submit" href="#" value="Forecast !"/>
+						</div>
 					</div>
-					<div class="row">
-						<h3><small>Search</small></h3>
-						<input type="text"/>
-						<input type="submit" href="#" value="Forecast!"/>
+					<div class="col-md-10">
+						<h3><small><input type="submit" href="#" value="Results"/> for <strong>{{req}}</strong> 
+							(<strong>{{locateType}}</strong>) 
+							up to: <strong>{{days}}</strong> 
+							days with <strong>{{metric}}</strong> system. 
+							(Language setting : <strong>{{lang}}</strong> )</small></h3>
 					</div>
-				</div>
-				<div class="col-md-10">
-					<h3><small>Results for : {{location}} type :{{type}} in: {{lang}} up to: {{days}} days</small></h3>
 				</div>
 			</div>
 		</div>
