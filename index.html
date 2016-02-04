@@ -28,7 +28,7 @@
 										</select>
 									</li>
 									<li role="presentation" >
-										Up to (days):
+										Up to :
 										<select class="form-control" ng-model="days" ng-options="n for n in listDays">
 										</select>
 									</li>
@@ -55,8 +55,8 @@
 					<div class="col-md-10">
 						<h3><small><input ng-click="testUrl()" type="submit" href="#" value="Search"/> for <strong>{{req}}</strong> 
 							(<strong>{{locateType}}</strong>) 
-							up to: <strong>{{days}}</strong> 
-							days with <strong>{{metric}}</strong> system. 
+							for <strong>{{days}}</strong>
+							 with <strong>{{metric}}</strong> system. 
 							(Language setting : <strong>{{lang}}</strong> )</small></h3>
 							<div ng-bind-html="contentResponse"></div>
 							{{}}

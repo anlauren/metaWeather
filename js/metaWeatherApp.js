@@ -10,20 +10,33 @@ mtw.controller('DataController', ['$scope','$http','$sce', function($scope, $htt
 	$scope.listLang = ['en', 'fr', 'sp'];
 	$scope.listLocateType = ['State', 'Town', 'GPS'];
 	$scope.listMetric =['imperial', 'metric'];
-	$scope.listDays = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
+	$scope.listDays = ["5days/3hours", "16days"];
 	$scope.lang = 'en';
 	$scope.locateType = 'Town';
 	$scope.metric ='metric';
-	$scope.days = 4;
+	$scope.days = "5days/3hours";
 	$scope.req='Austin';
-	$scope.rootApi ="http://api.openweathermap.org/data/2.5/forecast?q=";
-	$scope.endApi ="&mode=json&appid=44db6a862fba0b067b1930da0d769e98";
+	$scope.rootApi ="http://api.openweathermap.org/data/2.5/";
+	$scope.endApiForecast ="&mode=json&appid=44db6a862fba0b067b1930da0d769e98";
+	$scope.endApiDaily=	   "&mode=json&cnt=3&appid=44db6a862fba0b067b1930da0d769e98"
 	$scope.contentResponse=$sce.trustAsHtml("<strong>No Result for display </strong>");
 	$scope.testUrl =  function(){
-		var toSend = $scope.rootApi+$scope.req+"&units="+$scope.metric+"&lang="+$scope.lang+$scope.endApi;
+		var upTo = "";
+		var endApi ="";
+		if($scope.days == "5days/3hours"){
+			upTo ="forecast?q=";
+			endApi = $scope.endApiForecast;
+		}
+		else{
+			upTo ="forecast/daily?q=";
+			endApi = $scope.endApiDaily;
+		}
+		var toSend = $scope.rootApi+upTo+$scope.req+"&units="+$scope.metric+"&lang="+$scope.lang+endApi;
 		console.log(toSend);
 		$http.get(toSend).then(function _getSuccess(response)
 								{
+
+									console.log(response);
 									var data = response.data;
 									var city = data.city;
 									var forecast = data.list;
@@ -35,15 +48,23 @@ mtw.controller('DataController', ['$scope','$http','$sce', function($scope, $htt
 									$scope.contentResponse += tableBase;
 									for(var i = 0; i<prevLength; i++)// we are going to write all forecast table here
 									{
-										
-										$scope.contentResponse += "<tr><td>"+ forecast[i].dt_txt +"</td>"
-										$scope.contentResponse += "<td>"+ forecast[i].weather[0].description +"</td>";
-										$scope.contentResponse += "<td>" + forecast[i].main.humidity +"</td>";
-										$scope.contentResponse += "<td>" + forecast[i].main.temp+"</td>";
-										$scope.contentResponse += "</tr>";
+										if($scope.days == "5days/3hours"){		
+											$scope.contentResponse += "<tr><td>"+ forecast[i].dt_txt +"</td>"
+											$scope.contentResponse += "<td>"+ forecast[i].weather[0].description +"</td>";
+											$scope.contentResponse += "<td>" + forecast[i].main.humidity +"</td>";
+											$scope.contentResponse += "<td>" + forecast[i].main.temp+"</td>";
+											$scope.contentResponse += "</tr>";
+										}
+										else
+										{
+											$scope.contentResponse += "<tr><td> + "+ i +" days </td>"
+											$scope.contentResponse += "<td>"+ forecast[i].weather[0].description +"</td>";
+											$scope.contentResponse += "<td>" + forecast[i].humidity +"</td>";
+											$scope.contentResponse += "<td>" + forecast[i].temp.day+"</td>";
+											$scope.contentResponse += "</tr>";
+										}
 									}
 									$scope.contentResponse += "</tbody></table>";
-									console.log(response);
 									$scope.contentResponse = $sce.trustAsHtml($scope.contentResponse);
 								}
 							, function _getFailure(response)
@@ -55,3 +76,6 @@ mtw.controller('DataController', ['$scope','$http','$sce', function($scope, $htt
 }]);
 
 /*************************************** The Servives **********************************/
+/*http://api.openweathermap.org/data/2.5/forecast/daily?q=London&mode=xml&units=metric&cnt=7&appid=44db6a862fba0b067b1930da0d769e98
+http://api.openweathermap.org/data/2.5/daily?q=Austin&units=metric&lang=en&mode=json&cnt=3&appid=44db6a862fba0b067b1930da0d769e98
+http://api.openweathermap.org/data/2.5/forecast?q=London,us&mode=xml&appid=44db6a862fba0b067b1930da0d769e98*/
