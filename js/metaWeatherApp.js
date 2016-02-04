@@ -1,4 +1,4 @@
-/**********************************************************************************************
+*********************************************************************************************
 	 metaWeatherApp.js is defining services and modules of the angular structure
 **********************************************************************************************/
 
@@ -40,7 +40,7 @@ mtw.controller('DataController', ['$scope','$http','$sce', function($scope, $htt
 	$scope.GPS = $scope.locateType =="GPS";
 	$scope.req='Austin';
 	$scope.setSearchField = function(){
-		if (isMobile == true)
+/*		if (isMobile == true)
 		{
 			if($scope.locateType =="GPS")
 			{
@@ -55,7 +55,7 @@ mtw.controller('DataController', ['$scope','$http','$sce', function($scope, $htt
 				console.log($scope.GPS);
 			}
 		}
-		else{
+		else{*/
 			if($scope.clickCount > 0){ // here we are just preventing the initial click to show the list to have an impact on the page (only if not on mobile device...)
 				if($scope.locateType =="GPS")
 				{
@@ -72,7 +72,7 @@ mtw.controller('DataController', ['$scope','$http','$sce', function($scope, $htt
 			}
 			else
 				$scope.clickCount ++;			
-		}
+/*		}*/
 
 	}
 	$scope.sendReq=  function(){ // function to send a request to the API
@@ -166,4 +166,3 @@ http://api.openweathermap.org/data/2.5/forecast?q=London,us&mode=xml&appid=44db6
 http://api.openweathermap.org/data/2.5/forecast?lat=35&lon=139&appid=44db6a862fba0b067b1930da0d769e98
 http://api.openweathermap.org/data/2.5/forecast?lat=139&lon=35&units=metric&lang=en&cnt=48&mode=json&appid=44db6a862fba0b067b1930da0d769e98
 
-*/
