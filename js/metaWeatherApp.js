@@ -4,9 +4,12 @@
 
 
 /*************************************** Globals ********************************************/
-var isMobile = false;
- if ( (navigator.userAgent.match(/Android/i)) || (navigator.userAgent.match(/webOS/i)) || (navigator.userAgent.match(/iPhone/i)) ||  (navigator.userAgent.match(/iPod/i)) )
- 		isMobile = true;
+var md = new MobileDetect(window.navigator.userAgent);
+var isMobile = true;
+if(md.phone() == null)
+	isMobile = false;
+
+
 //check out if mobile device for future changes
 /*************************************** The App ********************************************/
 var mtw = angular.module('mtw', []); // Creating the main ng-app metaweather (mtw) controller for rootscope
