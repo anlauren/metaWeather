@@ -22,13 +22,19 @@
 							
 								<ul class="nav nav-pills nav-stacked">
 									<li role="presentation" >
-										Type:
+										Location mode:
 										<select class="form-control" ng-model="locateType">
 										<option ng-repeat ="n in listLocateType" value="{{n}}">{{n}}</option>
 										</select>
 									</li>
 									<li role="presentation" >
-										Up to :
+										Forecast mode:
+										<select class="form-control" ng-model="forecastType">
+										<option ng-repeat ="n in listForecastType" value="{{n}}">{{n}}</option>
+										</select>
+									</li>
+									<li role="presentation" >
+										Up to (days):
 										<select class="form-control" ng-model="days" ng-options="n for n in listDays">
 										</select>
 									</li>
