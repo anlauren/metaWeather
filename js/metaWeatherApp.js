@@ -1,4 +1,4 @@
-*********************************************************************************************
+/*********************************************************************************************
 	 metaWeatherApp.js is defining services and modules of the angular structure
 **********************************************************************************************/
 
@@ -160,9 +160,3 @@ mtw.controller('DataController', ['$scope','$http','$sce', function($scope, $htt
 }]);
 
 /*************************************** The Servives **********************************/
-/*http://api.openweathermap.org/data/2.5/forecast/daily?q=London&mode=xml&units=metric&cnt=7&appid=44db6a862fba0b067b1930da0d769e98
-http://api.openweathermap.org/data/2.5/daily?q=Austin&units=metric&lang=en&mode=json&cnt=3&appid=44db6a862fba0b067b1930da0d769e98
-http://api.openweathermap.org/data/2.5/forecast?q=London,us&mode=xml&appid=44db6a862fba0b067b1930da0d769e98
-http://api.openweathermap.org/data/2.5/forecast?lat=35&lon=139&appid=44db6a862fba0b067b1930da0d769e98
-http://api.openweathermap.org/data/2.5/forecast?lat=139&lon=35&units=metric&lang=en&cnt=48&mode=json&appid=44db6a862fba0b067b1930da0d769e98
-
