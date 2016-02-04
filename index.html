@@ -23,7 +23,7 @@
 								<ul class="nav nav-pills nav-stacked">
 									<li role="presentation" >
 										Location mode:
-										<select class="form-control" ng-model="locateType">
+										<select class="form-control" ng-model="locateType" ng-click="setSearchField()">
 										<option ng-repeat ="n in listLocateType" value="{{n}}">{{n}}</option>
 										</select>
 									</li>
@@ -44,7 +44,7 @@
 										</select>
 									</li>
 									<li role="presentation" >
-										Metric:
+										System:
 										<select class="form-control" ng-model="metric">
 										<option ng-repeat ="n in listMetric" value="{{n}}">{{n}}</option>
 										</select>
@@ -54,14 +54,18 @@
 						</div>
 						<div class="row">
 							<h3><small>Search</small></h3>
-							<input type="text" ng-model="req"/>
-							<input ng-click="testUrl()" type="submit" href="#" value="Forecast !"/>
+									<input  ng-show="!GPS" type="text" ng-model="req"/>
+									<table ng-show="GPS">
+										<tr><td>lattitude</td><td><input   type="text" ng-model="lat"/></td></tr>
+										<tr><td>longitude</td><td><input   type="text" ng-model="lon"/></td></tr>
+									</table>
+								<input ng-click="sendReq()" type="submit" href="#" value="Forecast !"/>
 						</div>
 					</div>
 					<div class="col-md-10">
-						<h3><small><input ng-click="testUrl()" type="submit" href="#" value="Search"/> for <strong>{{req}}</strong> 
+						<h3><small><input ng-click="sendReq()" type="submit" href="#" value="Search"/> for <strong ng-show="!GPS">{{req}}</strong> <strong ng-show="GPS">{{lat}},{{lon}}</strong>
 							(<strong>{{locateType}}</strong>) 
-							for <strong>{{days}}</strong>
+							for <strong>{{days}}</strong> days 
 							 with <strong>{{metric}}</strong> system. 
 							(Language setting : <strong>{{lang}}</strong> )</small></h3>
 							<div ng-bind-html="contentResponse"></div>
