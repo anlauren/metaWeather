@@ -2,6 +2,12 @@
 	 metaWeatherApp.js is defining services and modules of the angular structure
 **********************************************************************************************/
 
+
+/*************************************** Globals ********************************************/
+var isMobile = false;
+ if ( (navigator.userAgent.match(/Android/i)) || (navigator.userAgent.match(/webOS/i)) || (navigator.userAgent.match(/iPhone/i)) ||  (navigator.userAgent.match(/iPod/i)) )
+ 		isMobile = true;
+//check out if mobile device for future changes
 /*************************************** The App ********************************************/
 var mtw = angular.module('mtw', []); // Creating the main ng-app metaweather (mtw) controller for rootscope
 
@@ -12,11 +18,11 @@ mtw.controller('DataController', ['$scope','$http','$sce', function($scope, $htt
 	$scope.listMetric =['imperial', 'metric'];
 	$scope.listDays = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
 	$scope.listForecastType = ["every 3 hours", "daily"];
-	$scope.forecastType = "every 3 hours";
+	$scope.forecastType = "daily";
 	$scope.lang = 'en';
 	$scope.locateType = 'Name';
 	$scope.metric ='metric';
-	$scope.days = 6;
+	$scope.days = 7;
 	$scope.req='Austin';
 	$scope.lon="0";
 	$scope.lat="0";
@@ -29,7 +35,8 @@ mtw.controller('DataController', ['$scope','$http','$sce', function($scope, $htt
 	$scope.GPS = $scope.locateType =="GPS";
 	$scope.req='Austin';
 	$scope.setSearchField = function(){
-		if($scope.clickCount > 0){ // here we are just preventing the initial click to show the list to have an impact on the page
+		if (isMobile == true)
+		{
 			if($scope.locateType =="GPS")
 			{
 				$scope.GPS = true;
@@ -43,8 +50,25 @@ mtw.controller('DataController', ['$scope','$http','$sce', function($scope, $htt
 				console.log($scope.GPS);
 			}
 		}
-		else
-			$scope.clickCount ++;
+		else{
+			if($scope.clickCount > 0){ // here we are just preventing the initial click to show the list to have an impact on the page (only if not on mobile device...)
+				if($scope.locateType =="GPS")
+				{
+					$scope.GPS = true;
+					console.log($scope.GPS);
+					$scope.clickCount =0;
+				}
+				else if ($scope.locateType =="Name")
+				{
+					$scope.clickCount =0;
+					$scope.GPS = false;
+					console.log($scope.GPS);
+				}
+			}
+			else
+				$scope.clickCount ++;			
+		}
+
 	}
 	$scope.sendReq=  function(){ // function to send a request to the API
 		var forecastType= "";
