@@ -4,11 +4,10 @@
 
 
 /*************************************** Globals ********************************************/
-var md = new MobileDetect(window.navigator.userAgent);
+var md = new MobileDetect(window.navigator.userAgent); // checking if we are on mobile device
 var isMobile = true;
 if(md.phone() == null)
 	isMobile = false;
-var testVal;
 
 //check out if mobile device for future changes
 /*************************************** The App ********************************************/
@@ -175,7 +174,7 @@ mtw.controller('DataController', ['$scope','$http','$sce', function($scope, $htt
 }]);
 
 /*************************************** Utils **********************************/
-function createCookie(name,value,days) {
+function createCookie(name,value,days) { //cookie creator
 	if (days) {
 		var date = new Date();
 		date.setTime(date.getTime()+(days*24*60*60*1000));
@@ -186,7 +185,7 @@ function createCookie(name,value,days) {
 	return document.cookie;
 }
 
-function readCookie(name) {
+function readCookie(name) { //cookie reader
 	var nameEQ = name + "=";
 	var ca = document.cookie.split(';');
 	for(var i=0;i < ca.length;i++) {
