@@ -47,7 +47,6 @@ mtw.controller('DataController', ['$scope','$http','$sce', function($scope, $htt
 	$scope.clickCount =0;
 	$scope.GPSList=[true, false];
 	$scope.GPS = $scope.locateType =="GPS";
-	$scope.req='Austin';
 
 	$scope.setSearchField = function(){
 /*		if (isMobile == true)// Mobile behavior unclear at this time
