@@ -8,9 +8,6 @@ var md = new MobileDetect(window.navigator.userAgent);
 var isMobile = true;
 if(md.phone() == null)
 	isMobile = false;
-if(isMobile)
-	alert("you are on mobile phone");
-
 var testVal;
 
 //check out if mobile device for future changes
