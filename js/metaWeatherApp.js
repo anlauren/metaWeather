@@ -18,7 +18,7 @@ var mtw = angular.module('mtw', []); // Creating the main ng-app metaweather (mt
 
 /*************************************** The Modules *****************************************/
 mtw.controller('DataController', ['$scope','$http','$sce', function($scope, $http,$sce){ // Controlling the data we will send to the app and how
-	$scope.listLang = ['en', 'fr', 'sp'];
+	$scope.listLang = ['en', 'fr', 'sp','de', 'ru', 'it', 'pl','fi', 'nl', 'bg', 'sd', 'zh', 'tr', 'hr', 'ca'];
 	$scope.listLocateType = ['Name', 'GPS'];
 	$scope.listMetric =['imperial', 'metric'];
 	$scope.listDays = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
