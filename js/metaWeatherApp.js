@@ -8,11 +8,6 @@ var md = new MobileDetect(window.navigator.userAgent); // checking if we are on 
 var isMobile = true;
 if(md.phone() == null)
 	isMobile = false;
-//Loading Json model
-var cityList =$.getJSON('http://164.132.51.31/metaWeather/utils/city.list.json');
-cityList = cityList.responseText;
-//cityList =JSON.parse(cityList);
-//check out if mobile device for future changes
 /*************************************** The App ********************************************/
 var mtw = angular.module('mtw', []); // Creating the main ng-app metaweather (mtw) controller for rootscope
 
@@ -28,7 +23,6 @@ mtw.controller('DataController', ['$scope','$http','$sce', function($scope, $htt
 	$scope.locateType = 'Name';
 	$scope.metric ='metric';
 	$scope.days = 7;
-	$(".switch").bootstrapSwitch();
 	if(readCookie("req")==null)// We check if we have user previous research
 		$scope.req='Austin';
 	else
@@ -45,45 +39,21 @@ mtw.controller('DataController', ['$scope','$http','$sce', function($scope, $htt
 	$scope.apiKey="&appid=44db6a862fba0b067b1930da0d769e98";
 	$scope.apiMode="&mode=json";
 	$scope.contentResponse=$sce.trustAsHtml("<strong>No Result for display </strong>");
-	$scope.clickCount =0;
 	$scope.GPSList=[true, false];
 	$scope.GPS = $scope.locateType =="GPS";
-	 $scope.cardslist = [
-	 { 'name' : 'Skylasher' },
-	 { 'name' : 'Thrashing Mossdog' },
-	 { 'name' : 'Zhur-Taa Druid' },
-	 { 'name' : 'Feral Animist' },
-	 { 'name' : 'Rubblebelt Maaka' },
-	 { 'name' : 'Mending Touch' },
-	 { 'name' : 'Weapon Surge' },
-	 { 'name' : 'Woodlot Crawler' },
-	 { 'name' : 'Phytoburst' },
-	 { 'name' : 'Smelt-Ward Gatekeepers' },
-	 { 'name' : 'Debt to the Deathless' },
-	 { 'name' : 'Woodlot Crawler' },
-	 { 'name' : 'Blaze Commando' },
-	 { 'name' : 'Uncovered Clues' }
-	 ];
-	 
-	 // saisie du nom de la carte
-	 $scope.card = null;
 	$scope.forecastClicked == false; // turns to true if we already clicked on search. To enable direct correction of display while changing parameters
 	$scope.actualizeSearch = function(){ // When we change the parameters search.
 		if($scope.forecastClicked == true)
 			$scope.sendReq();
 	}
-	$scope.setSearchField = function(){
+	$scope.setSearchField = function(){// to display or not the GPS coordinate input fields
 				if($scope.locateType =="GPS")
 				{
 					$scope.GPS = true;
-					console.log($scope.GPS);
-					$scope.clickCount =0;
 				}
 				else if ($scope.locateType =="Name")
 				{
-					$scope.clickCount =0;
 					$scope.GPS = false;
-					console.log($scope.GPS);
 				}
 	}
 	$scope.sendReq=  function(){ // function to send a request to the API
@@ -115,9 +85,10 @@ mtw.controller('DataController', ['$scope','$http','$sce', function($scope, $htt
 			tempSymbol = "F";
 			speedSymbol = "Mph";
 		}
+		//now we can build the request
 		var toSend = $scope.rootApi+forecastType+locateType+"&units="+$scope.metric+"&lang="+$scope.lang+"&cnt="+cnt+$scope.apiMode+$scope.apiKey;
 		console.log(toSend);
-		$http.get(toSend).then(function _getSuccess(response)
+		$http.get(toSend).then(function _getSuccess(response) // sending the request
 								{
 
 									console.log(response);
@@ -166,6 +137,7 @@ mtw.controller('DataController', ['$scope','$http','$sce', function($scope, $htt
 													$scope.contentResponse += "<tr><td> tomorrow </td>";
 												else
 													$scope.contentResponse += "<tr><td>+ "+i+" days </td>";
+												console.log("daily forecast");
 												$scope.contentResponse += "<td><img src='media/"+forecast[i].weather[0].icon+".png'></img></td>";
 												$scope.contentResponse += "<td>"+ forecast[i].weather[0].description +"</td>";
 												$scope.contentResponse += "<td>" + forecast[i].temp.day+" °"+tempSymbol+"</td>";
@@ -173,7 +145,7 @@ mtw.controller('DataController', ['$scope','$http','$sce', function($scope, $htt
 												$scope.contentResponse += "<td>" + forecast[i].humidity +"%</td>";
 												$scope.contentResponse += "<td>" + forecast[i].speed +" "+speedSymbol+" </td>";	
 												$scope.contentResponse += "</tr>";
-												console.log("daily forecast");
+												
 											}
 										}
 										$scope.contentResponse += "</tbody></table>";
@@ -191,7 +163,7 @@ mtw.controller('DataController', ['$scope','$http','$sce', function($scope, $htt
 								}
 							, function _getFailure(response)
 								{
-									$scope.contentResponse ="ANSWER FAILED" + response ;
+									$scope.contentResponse ="Unexpected error from http :" + response ;
 								}
 							);
 	};

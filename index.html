@@ -10,23 +10,23 @@
     	<link rel="stylesheet" href="css/metaw.css">
     	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     	<meta name="viewport" content="width=device-width, initial-scale=1">
-    	<link href="css/bootstrap-switch.min.css" rel="stylesheet">
-    	<script src="js/bootstrap-switch.min.js"></script>
     	<title>MetaWeather</title>
     	<link rel="icon" type="image/png" href="media/icon.png" />
 	</head>
 	<body>
 
 		<div class="container-fluid page">
+<!--                                    BANNER                                                                                   -->
 			<div class="row col-md-12 page-header">
 				<h1>MetaWeather <small></br>the weather you need</small></h1>
 			</div>
+<!--                                    BODY                                                                                     -->
 			<div class="row">	
 				<div ng-controller="DataController">
 					<div class="col-md-2 well well-lg">
 						<div class="row">
 							<h3><small>Search options</small></h3>
-							
+							<!--                                     SEARCH OPTIONS ZONE                                        -->
 								<ul class="nav nav-pills nav-stacked">
 									<li role="presentation" >
 										Location mode:
@@ -62,12 +62,9 @@
 						</div>
 						<div class="row">
 							<h3><small>Search</small></h3>
+							<!--                                             SEARCH INPUT (hiding/showing the GPS data)                               -->
 								<form style="witdh:100%;">
 									<input  ng-show="!GPS"class="form-control"  type="text" ng-model="req"/>
-									<input type="text" placeholder="Recherche de cartes ..." list="cards" data-ng-model="req" />
-									<datalist id="cards">
-									 	<option data-ng-repeat="item in cardslist" value="{{item.name}}" />
-									</datalist>
 									<table ng-show="GPS">
 										<tr><td style="padding:3px;">lattitude </td><td><input class="form-control"   type="text" ng-model="lat"/></td></tr>
 										<tr><td style="padding:3px;">longitude </td><td><input class="form-control"   type="text" ng-model="lon"/></td></tr>
@@ -77,13 +74,15 @@
 						</div>
 					</div>
 					<div class="col-md-9" >
+						<!--                                 DISPLAY SEARCH INFO (Binded to search parameters )        -->
 						<h3><small><input ng-click="sendReq()" type="submit" href="#" value="Search"/> for <strong ng-show="!GPS">{{req}}</strong> <strong ng-show="GPS">{{lat}},{{lon}}</strong>
 							(<strong>{{locateType}}</strong>) 
 							for <strong>{{days}}</strong> days 
 							 with <strong>{{metric}}</strong> system. 
 							(Language setting : <strong>{{lang}}</strong> )</small></h3>
 							<div ng-bind-html="contentResponse"></div>
-							{{}}
+																		<!-- DISPLAY ZONE FOR CONTENT -->
+																		<!--                          -->
 					</div>
 				</div>
 			</div>
