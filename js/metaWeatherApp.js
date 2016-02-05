@@ -10,7 +10,7 @@ if(md.phone() == null)
 	isMobile = false;
 //Loading Json model
 var cityList =$.getJSON('http://164.132.51.31/metaWeather/utils/city.list.json');
-cityList = JSON.parse(cityList.responseText);
+cityList = cityList.responseText;
 //cityList =JSON.parse(cityList);
 //check out if mobile device for future changes
 /*************************************** The App ********************************************/
