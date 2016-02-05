@@ -105,8 +105,10 @@ mtw.controller('DataController', ['$scope','$http','$sce', function($scope, $htt
 										var forecast = data.list;
 										$scope.contentResponse = "<h4>Results found for <strong>" + city.name +" ("+ city.country + ") </strong> :</h4></br>";
 										$scope.contentResponse += "Coordinates : "+ city.coord.lat + "/"+ city.coord.lon+"<br>";
+										//we set up the global variables to the results we got from the request
 										$scope.lat = city.coord.lat ;
 										$scope.lon = city.coord.lon ;
+										$scope.req = city.name; 
 										// this will be the latest research so we record it via cookies 
 										createCookie("req", city.name, 362);
 										createCookie("lat", $scope.lat, 362);
