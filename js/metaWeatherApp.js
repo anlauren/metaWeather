@@ -8,6 +8,11 @@ var md = new MobileDetect(window.navigator.userAgent); // checking if we are on 
 var isMobile = true;
 if(md.phone() == null)
 	isMobile = false;
+//Loading Json model
+var cityList;
+$.getJSON('http://164.132.51.31/metaWeather/utils/city.list.json', function(data){
+	cityList = JSON.parse(data);
+})
 
 //check out if mobile device for future changes
 /*************************************** The App ********************************************/
@@ -45,6 +50,25 @@ mtw.controller('DataController', ['$scope','$http','$sce', function($scope, $htt
 	$scope.clickCount =0;
 	$scope.GPSList=[true, false];
 	$scope.GPS = $scope.locateType =="GPS";
+	 $scope.cardslist = [
+	 { 'name' : 'Skylasher' },
+	 { 'name' : 'Thrashing Mossdog' },
+	 { 'name' : 'Zhur-Taa Druid' },
+	 { 'name' : 'Feral Animist' },
+	 { 'name' : 'Rubblebelt Maaka' },
+	 { 'name' : 'Mending Touch' },
+	 { 'name' : 'Weapon Surge' },
+	 { 'name' : 'Woodlot Crawler' },
+	 { 'name' : 'Phytoburst' },
+	 { 'name' : 'Smelt-Ward Gatekeepers' },
+	 { 'name' : 'Debt to the Deathless' },
+	 { 'name' : 'Woodlot Crawler' },
+	 { 'name' : 'Blaze Commando' },
+	 { 'name' : 'Uncovered Clues' }
+	 ];
+	 
+	 // saisie du nom de la carte
+	 $scope.card = null;
 	$scope.forecastClicked == false; // turns to true if we already clicked on search. To enable direct correction of display while changing parameters
 	$scope.actualizeSearch = function(){ // When we change the parameters search.
 		if($scope.forecastClicked == true)

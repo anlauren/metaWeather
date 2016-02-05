@@ -64,6 +64,10 @@
 							<h3><small>Search</small></h3>
 								<form style="witdh:100%;">
 									<input  ng-show="!GPS"class="form-control"  type="text" ng-model="req"/>
+									<input type="text" placeholder="Recherche de cartes ..." list="cards" data-ng-model="req" />
+									<datalist id="cards">
+									 	<option data-ng-repeat="item in cardslist" value="{{item.name}}" />
+									</datalist>
 									<table ng-show="GPS">
 										<tr><td style="padding:3px;">lattitude </td><td><input class="form-control"   type="text" ng-model="lat"/></td></tr>
 										<tr><td style="padding:3px;">longitude </td><td><input class="form-control"   type="text" ng-model="lon"/></td></tr>
