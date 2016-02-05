@@ -100,12 +100,9 @@ mtw.controller('DataController', ['$scope','$http','$sce', function($scope, $htt
 		}
 		if($scope.locateType== "Name"){// we set up the forecast location mode in the URL
 			locateType="q="+$scope.req;
-			createCookie("req", $scope.req);
 		}
 		else{
 			locateType="lat="+$scope.lat+"&lon="+$scope.lon;
-			createCookie("lat", $scope.lat);
-			createCookie("lon", $scope.lon);
 		}
 		if($scope.metric== "metric"){// we set up the forecast location mode in the URL
 			tempSymbol = "C";
@@ -129,7 +126,10 @@ mtw.controller('DataController', ['$scope','$http','$sce', function($scope, $htt
 										$scope.contentResponse += "Coordinates : "+ city.coord.lat + "/"+ city.coord.lon+"<br>";
 										$scope.lat = city.coord.lat ;
 										$scope.lon = city.coord.lon ;
-
+										// this will be the latest research so we record it via cookies 
+										createCookie("req", city.name, 362);
+										createCookie("lat", $scope.lat, 362);
+										createCookie("lon", $scope.lon, 362);
 										var tableBase = "<table class = 'table-striped'><thead><tr>";
 										prevLength = data.list.length; 
 										if($scope.forecastType == "every 3 hours"){	 // design of the presentation table changes with then mode selected by the user
