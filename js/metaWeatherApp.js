@@ -11,6 +11,7 @@ if(md.phone() == null)
 if(isMobile)
 	alert("you are on mobile phone");
 
+var testVal;
 
 //check out if mobile device for future changes
 /*************************************** The App ********************************************/
@@ -28,6 +29,7 @@ mtw.controller('DataController', ['$scope','$http','$sce', function($scope, $htt
 	$scope.locateType = 'Name';
 	$scope.metric ='metric';
 	$scope.days = 7;
+	$(".switch").bootstrapSwitch();
 	if(readCookie("req")==null)// We check if we have user previous research
 		$scope.req='Austin';
 	else
@@ -47,25 +49,12 @@ mtw.controller('DataController', ['$scope','$http','$sce', function($scope, $htt
 	$scope.clickCount =0;
 	$scope.GPSList=[true, false];
 	$scope.GPS = $scope.locateType =="GPS";
-
+	$scope.forecastClicked == false; // turns to true if we already clicked on search. To enable direct correction of display while changing parameters
+	$scope.actualizeSearch = function(){ // When we change the parameters search.
+		if($scope.forecastClicked == true)
+			$scope.sendReq();
+	}
 	$scope.setSearchField = function(){
-/*		if (isMobile == true)// Mobile behavior unclear at this time
-		{
-			if($scope.locateType =="GPS")
-			{
-				$scope.GPS = true;
-				console.log($scope.GPS);
-				$scope.clickCount =0;
-			}
-			else if ($scope.locateType =="Name")
-			{
-				$scope.clickCount =0;
-				$scope.GPS = false;
-				console.log($scope.GPS);
-			}
-		}
-		else{*/
-			if($scope.clickCount > 0){ // here we are just preventing the initial click to show the list to have an impact on the page 
 				if($scope.locateType =="GPS")
 				{
 					$scope.GPS = true;
@@ -78,13 +67,9 @@ mtw.controller('DataController', ['$scope','$http','$sce', function($scope, $htt
 					$scope.GPS = false;
 					console.log($scope.GPS);
 				}
-			}
-			else
-				$scope.clickCount ++;			
-/*		}*/
-
 	}
 	$scope.sendReq=  function(){ // function to send a request to the API
+		$scope.forecastClicked =true;
 		var forecastType= "";
 		var endApi ="";
 		var locateType ="";
