@@ -6,6 +6,7 @@
 	margin:0px;
 	padding-left: 15px;
 	background-image: url(../media/bground.jpg);
+	box-shadow:0px  10px grey;
 }
 thead{
 	font-weight: bold;
