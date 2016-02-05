@@ -9,11 +9,8 @@ var isMobile = true;
 if(md.phone() == null)
 	isMobile = false;
 //Loading Json model
-var cityList;
-$.getJSON('http://164.132.51.31/metaWeather/utils/city.list.json', function(data){
-	cityList = JSON.parse(data);
-})
-
+var cityList =$.getJSON('http://164.132.51.31/metaWeather/utils/city.list.json').responseText;
+cityList =JSON.Parse(cityList);
 //check out if mobile device for future changes
 /*************************************** The App ********************************************/
 var mtw = angular.module('mtw', []); // Creating the main ng-app metaweather (mtw) controller for rootscope
