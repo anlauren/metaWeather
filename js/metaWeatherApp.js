@@ -10,7 +10,7 @@ if(md.phone() == null)
 	isMobile = false;
 if(isMobile)
 {
-	$("body").css("backround-size","");
+	$("body").css("backround-size","300%");
 }
 /*************************************** The App ********************************************/
 var mtw = angular.module('mtw', []); // Creating the main ng-app metaweather (mtw) controller for rootscope
