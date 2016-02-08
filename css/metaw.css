@@ -25,7 +25,8 @@ td{
 }*/
 body{
 	background-image: url(../media/sky.jpg);
-	background-position: fixed;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
 	background-size: 100%;
 	padding:10px;
 }
