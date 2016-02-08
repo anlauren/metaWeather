@@ -8,6 +8,10 @@ var md = new MobileDetect(window.navigator.userAgent); // checking if we are on 
 var isMobile = true;
 if(md.phone() == null)
 	isMobile = false;
+if(isMobile)
+{
+	$("body").css("backround-size","");
+}
 /*************************************** The App ********************************************/
 var mtw = angular.module('mtw', []); // Creating the main ng-app metaweather (mtw) controller for rootscope
 
@@ -109,10 +113,17 @@ mtw.controller('DataController', ['$scope','$http','$sce', function($scope, $htt
 										var tableBase = "<table class = 'table-striped'><thead><tr>";
 										prevLength = data.list.length; 
 										if($scope.forecastType == "every 3 hours"){	 // design of the presentation table changes with then mode selected by the user
-											tableBase = "<table class='col-md-12 table-striped'><thead><tr><td>time</td><td></td><td>description</td><td>temperature</td><td>humidity(%)</td><td>Wind speed</td></tr></thead><tbody>";
-										}
+											if(isMobile)
+												tableBase = "<table class='table-striped'><thead><tr><td>time</td><td></td><td>description</td><td>temperature</td><td>humidity(%)</td><td>Wind speed</td></tr></thead><tbody>";
+											else
+												tableBase = "<table class='col-md-12 table-striped'><thead><tr><td>time</td><td></td><td>description</td><td>temperature</td><td>humidity(%)</td><td>Wind speed</td></tr></thead><tbody>";
+										}	
+
 										else{
-												tableBase = "<table class='col-md-12 table-striped'><thead><tr><td>time</td><td></td><td>description</td><td>Day</td><td>Night</td><td>humidity(%)</td><td>Wind speed</td></tr></thead><tbody>";
+											if(isMobile)
+												tableBase = "<table class='table-striped'><thead><tr><td>time</td><td></td><td>description</td><td>Day</td><td>Night</td><td>humidity(%)</td><td>Wind speed</td></tr></thead><tbody>";
+											else
+												tableBase = "<table class='col-md-12 table-striped'><thead><tr><td>time</td><td></td><td>description</td><td>Day</td><td>Night</td><td>humidity(%)</td><td>Wind speed</td></tr></thead><tbody>";	
 										}
 
 										
