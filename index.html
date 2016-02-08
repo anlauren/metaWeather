@@ -17,16 +17,16 @@
 
 		<div class="container-fluid page">
 <!--                                    BANNER                                                                                   -->
-			<div class="row col-md-12 page-header">
+			<div class="row col-md-12 page-header box-shadow--8dp well well-lg">
 				<h1>MetaWeather <small></br>the weather you need</small></h1>
 			</div>
 <!--                                    BODY                                                                                     -->
 			<div class="row">	
 				<div ng-controller="DataController">
-					<div class="col-md-2 well well-lg">
+					<div class="col-md-2 well well-lg  box-shadow--8dp">
 						<div class="row">
 							<h3><small>Search options</small></h3>
-							<!--                                     SEARCH OPTIONS ZONE                                        -->
+							<!--                          SEARCH OPTIONS ZONE                                        -->
 								<ul class="nav nav-pills nav-stacked">
 									<li role="presentation" >
 										Location mode:
@@ -73,7 +73,7 @@
 								</form>
 						</div>
 					</div>
-					<div class="col-md-9" >
+					<div class="col-md-9 box-shadow--8dp well well-lg" >
 						<!--                                 DISPLAY SEARCH INFO (Binded to search parameters )        -->
 						<h3><small><input ng-click="sendReq()" type="submit" href="#" value="Search"/> for <strong ng-show="!GPS">{{req}}</strong> <strong ng-show="GPS">{{lat}},{{lon}}</strong>
 							(<strong>{{locateType}}</strong>) 
